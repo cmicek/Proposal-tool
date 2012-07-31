@@ -1,5 +1,7 @@
 @import mixins
 
+/*Generic Sidebar =====================================*/
+
 .singular-aside
   background: rgb(240,239,236)
   border-right: solid 1px rgb(203,203,202)
@@ -11,12 +13,76 @@
   position: fixed
   width: 250px
 
-.widget
-  border-bottom: solid 1px $grey20
+
+.widget-active
+  border-bottom: solid 1px $grey30
   box-shadow: 0 1px 0 rgba(255,255,255,.75)
 
+.widget-toggle
+  @include transition ((color .15s, background .15s))
+  @include gradient (rgb(238,237,235), (rgb(238,237,235), rgb(226,225,223)))
+  box-shadow: 0 1px 0 rgb(249,248,247), inset 0 1px 0 rgba(255,255,255,.5)
+  border-bottom: solid 1px $grey30
+  color: $grey60
+  cursor: pointer
+  font: 15px/18px 'MuseoSans500Regular', sans-serif 
+  padding: 10px 10px 10px 50px
+  position: relative
+  text-transform: uppercase
+  text-shadow: 0 1px 0 rgba(255,255,255,.75)
+
+  &:before
+    content: "▶"
+    display: block
+    font-size: 9px
+    position: absolute
+    left: 30px
+    top: 10px
+  &:hover
+    @include gradient (rgb(238,237,235), (rgb(240,239,237), rgb(230,229,227)))
+    color: $grey80
+  &:active
+    @include gradient (rgb(226,225,223), (rgb(226,225,223), rgb(226,225,223)))
+    box-shadow: inset 0 1px 2px rgba(35,31,32,.1), 0 1px 0 rgb(249,248,247)
+    padding-bottom: 9px
+    padding-top: 11px
+
+    &:before
+      top: 11px
+
+  .widget-active &
+    @include gradient (rgb(238,237,235), (rgb(240,239,237), rgb(230,229,227)))
+    box-shadow: 0 1px 2px rgba(35,31,32,.1), inset 0 1px 0 rgba(255,255,255,.5)
+    color: $grey80
+
+    &:before
+      content: "▼"
+    &:active
+      @include gradient (rgb(226,225,223), (rgb(226,225,223), rgb(226,225,223)))
+      box-shadow: inset 0 1px 2px rgba(35,31,32,.1), 0 1px 0 rgba(249,248,247, 0)
+      padding-bottom: 9px
+      padding-top: 11px
+    
+      &:before
+        top: 11px
+
 .widget-content
-  padding: 20px
+  height: 0
+  overflow: hidden
+  padding: 0 20px
+
+  .widget-active &
+    height: auto
+    padding-bottom: 20px
+    padding-top: 20px
+
+.widget-toggle + .widget-content
+  background: rgb(248,247,246)
+
+
+/*Specific widget =====================================*/
+
+/*Main Content =====================================*/
 
 .singular-header,
 .singular-content

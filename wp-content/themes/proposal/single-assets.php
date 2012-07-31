@@ -7,11 +7,36 @@
       $date = new Cokidoo_Datetime($post->post_modified);
        ?>
       <aside class="singular-aside">
-        <div class="widget widget-title">
+        <div class="widget widget-active">
           <div class="widget-content">
-            <?php the_title(); ?>
+            some content
           </div>
         </div>
+        <div class="widget">
+          <div class="widget-toggle">
+            Toggle title
+          </div>
+          <div class="widget-content">
+            toggle content
+          </div>
+        </div>
+        <div class="widget widget-active">
+          <div class="widget-toggle">
+            Toggle title
+          </div>
+          <div class="widget-content">
+            toggle content
+          </div>
+        </div>
+        <div class="widget">
+          <div class="widget-toggle">
+            Toggle title
+          </div>
+          <div class="widget-content">
+            toggle content
+          </div>
+        </div>
+
       </aside>
       
       <header class="singular-header">
