@@ -1,0 +1,67 @@
+@import mixins
+nav
+  background: #333 url(assets/images/bg-nav.png) repeat
+  bottom: 0
+  left: 0
+  position: fixed
+  top: 0
+  z-index: 1
+  width: 60px
+
+  &:after
+    box-shadow: -1px 0 5px rgba(0,0,0,.10)
+    background: rgb(50,51,54)
+    border-right: #fff
+    content: ""
+    display: block
+    height: 100%
+    right: 0
+    position: absolute
+    top: 0
+    width: 1px
+    z-index: 2
+  a
+    border-bottom: solid 1px rgba(50,51,54, 0)
+    height: 60px
+    display: block
+    opacity: .6
+    position: relative
+    text-indent: -150%
+    word-wrap: none
+    &:before
+      -webkit-font-smoothing: antialiased
+      content: attr(data-icon)
+      color: #fff
+      display: block
+      font: 30px/36px 'Pictos Custom'
+      height: 60px
+      position: absolute
+      text-align: center
+      text-indent: 0
+      text-shadow: 0 1px 3px rgba(0,0,0,.25)
+      top: 18px
+      width: 100%
+      z-index: 4
+    &:hover
+      opacity: 1
+  a.active
+    background: rgb(50,51,54)
+    border-bottom: solid 1px rgba(50,51,54, 1)
+    box-shadow: 0 1px 0 rgba(255,255,255,.1), inset 0 1px 0 rgba(50,51,54, 1)
+    opacity: 1
+    &:before
+      text-shadow: 0 1px 3px rgba(0,0,0,.25), -1px 0 30px rgba(255,255,255,.75) 
+    &:after
+      @include transform(rotate(-45deg))
+      box-shadow: inset -1px -1px 5px -1px rgba(0,0,0,.1), 1px 1px 0 #fff
+      background: rgb(50,51,54)
+      border: solid 1px rgba(50,51,54, 1)
+      content: ""
+      display: block
+      height: 16px
+      margin-top: -8px
+      position: absolute
+      right: -8px
+      top: 50%
+      width: 16px
+      z-index: 3
