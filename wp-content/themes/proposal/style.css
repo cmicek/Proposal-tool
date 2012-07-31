@@ -452,27 +452,30 @@ nav {
         color: #d4d4d3;
         font: 20px/28px "MuseoSans100Regular"; }
 
-table {
+.archive table {
   width: 100%; }
-  table th {
+  .archive table th {
     box-shadow: inset 0 -2px 5px -3px rgba(0, 0, 0, 0.1);
     border-bottom: solid 1px #d4d4d3;
     font-size: 13px;
     text-align: left;
     text-transform: uppercase; }
-    table th a {
+    .archive table th a {
+      border-bottom: solid 1px transparent;
+      display: block;
       padding: 15px 25px; }
-  table td {
-    border-bottom: solid 1px #e9e9e9;
+  .archive table td {
+    background: #faf9f6;
+    border-bottom: solid 1px #d4d4d3;
     border-top: solid 1px white;
     text-shadow: 0 1px 0 white;
-    padding: 5px 15px; }
-    table td a {
+    padding: 15px 25px; }
+    .archive table td a {
       border-bottom: solid 1px transparent; }
-      table td a:hover {
+      .archive table td a:hover {
         border-bottom: solid 1px;
         color: #222222; }
-  table tr:first-child td {
+  .archive table tr:first-child td {
     border-top: none; }
 
 .singular-aside {
@@ -483,7 +486,7 @@ table {
   left: 60px;
   top: 0;
   overflow: auto;
-  position: absolute;
+  position: fixed;
   width: 250px; }
 
 .widget {
@@ -514,22 +517,27 @@ section[contenteditable] {
 .singular-header h1 {
   float: left; }
 
-table.revisions {
-  width: 100%; }
-  table.revisions th {
-    box-shadow: inset 0 -2px 5px -3px rgba(0, 0, 0, 0.1);
-    border-bottom: solid 1px #e9e9e9;
-    font-size: 13px;
-    text-align: left;
-    padding: 5px 15px;
-    text-transform: uppercase; }
-  table.revisions td {
-    border-bottom: solid 1px #e9e9e9;
-    padding: 5px 15px; }
-    table.revisions td a {
-      border-bottom: solid 1px transparent; }
-      table.revisions td a:hover {
-        border-bottom: solid 1px;
-        color: #222222; }
-  table.revisions tr:first-child td {
-    border-top: none; }
+section.history {
+  padding: 0; }
+  section.history table {
+    width: 100%; }
+    section.history table th {
+      box-shadow: inset 0 -2px 5px -3px rgba(0, 0, 0, 0.1);
+      border-bottom: solid 1px #d4d4d3;
+      font-size: 13px;
+      text-align: left;
+      padding: 15px 25px;
+      text-transform: uppercase; }
+    section.history table td {
+      background: #faf9f6;
+      border-bottom: solid 1px #deddde;
+      border-top: solid 1px white;
+      padding: 10px 25px;
+      text-shadow: 0 1px 0 white; }
+      section.history table td a {
+        border-bottom: solid 1px transparent; }
+        section.history table td a:hover {
+          border-bottom: solid 1px;
+          color: #222222; }
+    section.history table tr:first-child td {
+      border-top: none; }

@@ -28,7 +28,7 @@
           <? the_content(); ?>
         </section>
         <section data-tab-id="preview" class="tab"></section>
-        <section data-tab-id="history" class="tab">
+        <section data-tab-id="history" class="tab history">
           <table class="revisions">
             <thead>
               <tr>
