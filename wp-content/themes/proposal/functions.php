@@ -28,6 +28,21 @@ Add Custom, Theme Specific Functions Below Here
 ==============================================================================*/
 
 
+
+function my_custom_post_status(){
+  register_post_status( 'unread', array(
+      'label' => _x( 'Unread', 'post' ),
+      'public' => true,
+      'exclude_from_search' => false,
+      'show_in_admin_all_list' => true,
+      'show_in_admin_status_list' => true,
+      'label_count' => _n_noop( 'Unread <span class="count">(%s)</span>', 'Unread <span class="count">(%s)</span>' ),
+  ) );
+}
+
+add_action( 'init', 'my_custom_post_status' );
+
+
 add_action('wp_ajax_update_asset', 'update_asset');
 add_action('wp_ajax_nopriv_update_asset', 'update_asset');
 
@@ -73,7 +88,6 @@ function build_revision_row($post){
   echo $row;
 
 }
-
 
 
 /* ============================================================================
@@ -135,9 +149,9 @@ function update_asset(){
   
   //Only runs for logged in users
   if ($user->ID == 0) {
+    echo('Login!');
     return false;
   }
-
   //Post ID is required
   if(isset($_POST['ID'])){
     if($_POST['ID'] == ''){
@@ -146,7 +160,6 @@ function update_asset(){
       $postInfo['ID'] = $_POST['ID'];
     }
   }
-
   //Post Content is required
   if(isset($_POST['post_content'])){
     if($_POST['post_content'] == ''){
@@ -164,7 +177,6 @@ function update_asset(){
 
    //Attempts to update the asset in the database
   $response = wp_insert_post($postInfo);
-   
   if (is_wp_error($response)){
     foreach($response->errors as $error){
       array_push($errors, $error[0]);

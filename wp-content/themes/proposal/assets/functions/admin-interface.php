@@ -46,7 +46,7 @@ function ad_custom_dashboard() {
 		get_currentuserinfo();
 		$restricted = array ();
  		//array_push ($restricted,__('Dashboard'));
- 		array_push ($restricted,__('Posts'));
+ 		// array_push ($restricted,__('Posts'));
  		//array_push ($restricted,__('Pages'));
  		//array_push ($restricted,__('Media'));
  		//array_push ($restricted,__('Profile'));

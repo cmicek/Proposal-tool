@@ -13,15 +13,7 @@
           </div>
         </div>
         <div class="widget">
-          <div class="widget-toggle">
-            Toggle title
-          </div>
-          <div class="widget-content">
-            toggle content
-          </div>
-        </div>
-        <div class="widget widget-active">
-          <div class="widget-toggle">
+          <div class="widget-toggle" data-toggle="" data-toggle-target=".widget" data-toggle-target-on="widget-active">
             Toggle title
           </div>
           <div class="widget-content">
@@ -29,7 +21,15 @@
           </div>
         </div>
         <div class="widget">
-          <div class="widget-toggle">
+          <div class="widget-toggle" data-toggle="" data-toggle-target=".widget" data-toggle-target-on="widget-active">
+            Toggle title
+          </div>
+          <div class="widget-content">
+            toggle content
+          </div>
+        </div>
+        <div class="widget">
+          <div class="widget-toggle" data-toggle="" data-toggle-target=".widget" data-toggle-target-on="widget-active">
             Toggle title
           </div>
           <div class="widget-content">
@@ -49,8 +49,8 @@
         </ul>
       </header>
       <div id="tabs" class="tabs singular-content">
-        <section data-tab-id="editor" data-asset-id="<? the_ID(); ?>" contenteditable="true" class="tab">
-          <? the_content(); ?>
+        <section data-tab-id="editor" class="tab editor">
+          <textarea data-asset-id="<? the_ID(); ?>" class="editor"><? echo($post->post_content); ?></textarea>
         </section>
         <section data-tab-id="preview" class="tab"></section>
         <section data-tab-id="history" class="tab history">
@@ -88,7 +88,7 @@
 <script type="text/javascript">
   jQuery(document).ready(function($) {  
     $('.preview').on('click', function(){
-      $('[data-tab-id=preview]').html(markdown.toHTML($('[contenteditable]').text()));
+      $('[data-tab-id=preview]').html(markdown.toHTML($('textarea.editor').val()));
     });
   });
 

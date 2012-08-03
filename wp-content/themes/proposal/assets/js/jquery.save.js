@@ -15,9 +15,13 @@ var save = (function() {
 
   function saveContent(){
     var post_content = $editor.text();
+    if($editor.is('textarea')){
+      post_content = $editor.val();
+    }
     if(!hasContentChanged(post_content)){
       return false;
     }
+
 
     var params = {
       action : 'update_asset',
@@ -25,7 +29,7 @@ var save = (function() {
       post_content: post_content
     };
     $('[data-modified-status]').text('saving...')
-
+    console.log(params);
     oldContent = post_content;
     xhr.abort();
     xhr = $.post(ad.ajaxurl, params, function(response) {
@@ -48,7 +52,7 @@ var save = (function() {
 
   function initUIBindings() {
     var inputTimer;
-    $('[contenteditable=true]').on('keyup', function(e){
+    $('[contenteditable=true],textarea.editor').on('keyup', function(e){
       var $this = $(this);
       clearTimeout(inputTimer);
       inputTimer = setTimeout(function(){
@@ -64,17 +68,18 @@ var save = (function() {
 
   return {
     init : function(el) {
-      if($('[contenteditable]').length < 1){
+      if($('[contenteditable],textarea.editor').length < 1){
         return false;
       }
-     
 
-      $editor = $('[contenteditable=true]');
+
+      $editor = $('[contenteditable=true],textarea.editor');
       assetID = $editor.attr('data-asset-id');
       oldContent = $editor.text();
 
       updateTimeDisplay();
       initUIBindings();
+
 
       saveInterval = setInterval(function(){
         updateTimeDisplay();

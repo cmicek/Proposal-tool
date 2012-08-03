@@ -23,9 +23,9 @@
   @include gradient (rgb(238,237,235), (rgb(238,237,235), rgb(226,225,223)))
   box-shadow: 0 1px 0 rgb(249,248,247), inset 0 1px 0 rgba(255,255,255,.5)
   border-bottom: solid 1px $grey30
-  color: $grey60
+  color: $grey50
   cursor: pointer
-  font: 15px/18px 'MuseoSans500Regular', sans-serif 
+  font: 14px/18px 'MuseoSans300Regular', sans-serif 
   padding: 10px 10px 10px 50px
   position: relative
   text-transform: uppercase
@@ -69,7 +69,7 @@
 .widget-content
   height: 0
   overflow: hidden
-  padding: 0 20px
+  padding: 0 30px
 
   .widget-active &
     height: auto
@@ -79,8 +79,74 @@
 .widget-toggle + .widget-content
   background: rgb(248,247,246)
 
+.widget
+  .dropdown
+    @include transition (none)
+    border-bottom: transparent
+    border-radius: 3px
+    display: inline-block
+    font-family: 'MuseoSans500Regular', sans-serif
+    line-height: 18px
+    padding: 0 3px
+    position: relative
+    span
+      position: relative
+      z-index: 2
+    &:after
+      content: "▼"
+      display: inline
+      font-size: 8px
+      left: 2px
+      position: relative
+    &:before
+      background: $blue
+      border: solid 1px darken($blue, 5%)
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 2px rgba(0,0,0,.05)
+      border-radius: 6px
+      content: ""
+      display: none
+      height: 100%
+      position: absolute
+      left: -3%
+      top: -2px
+      width: 106%
+      z-index: 0
 
-/*Specific widget =====================================*/
+    &:hover
+      color: #fff
+
+      &:before
+        display: block
+    &:active
+      &:before
+        background: darken($blue, 5%)
+        box-shadow: inset 0 1px 3px rgba(0,0,0,.25), 0 1px 0 #fff
+/*======================================================*/
+/*Specific widgets =====================================*/
+/*======================================================*/
+
+/*Title ============*/
+
+.widget-title
+  .widget-content
+    color: $grey80
+    font: 15px/18px 'MuseoSans500Regular', sans-serif 
+
+/*Author ============*/
+
+.widget-author
+  .widget-content
+    padding-left: 50px
+    position: relative
+    &:before
+      color: $blue
+      font: 22px/20px 'Pictos Custom'
+      content: "p"
+      display: block
+      left: 25px
+      margin-top: -9px
+      position: absolute
+      top: 50%
 
 /*Main Content =====================================*/
 
@@ -98,15 +164,22 @@
     box-shadow: 0 1px 5px rgba(0,0,0,.05)
     padding: 50px
 
-section[contenteditable]
-  font: 14px/20px "PT Mono"
-
-  &:focus
-    outline: none
-
 .singular-header
   h1
     float: left
+
+/*Editor Section =====================================*/
+
+section.editor
+  padding: 0
+
+  textarea
+    min-height: 800px
+    padding: 50px
+
+
+
+/*History Section =====================================*/
 
 section.history
   padding: 0

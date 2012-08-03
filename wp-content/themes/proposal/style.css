@@ -139,6 +139,9 @@ input[type="week"] {
     border-color: #545531;
     top: 1px; }
 
+textarea {
+  width: 100%; }
+
 @font-face {
   font-family: "MuseoSans100Regular";
   src: url("assets/fonts/museosans-100-webfont.eot");
@@ -247,6 +250,13 @@ li {
     list-style: disc; }
   li ol li {
     list-style: decimal; }
+
+*[contenteditable],
+textarea {
+  font: 14px/20px "PT Mono"; }
+  *[contenteditable]:focus,
+  textarea:focus {
+    outline: none; }
 
 /*General Layout ===================================== */
 body {
@@ -374,7 +384,7 @@ nav {
     background: white;
     border-top: solid 1px #d4d4d3;
     border-left: solid 1px #d4d4d3;
-    box-shadow: -1px -1px 3px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: -1px -1px 3px -1px rgba(0, 0, 0, 0.15);
     bottom: -55px;
     content: "";
     display: block;
@@ -506,9 +516,9 @@ nav {
   background-image: linear-gradient(#eeedeb, #e2e1df);
   box-shadow: 0 1px 0 #f9f8f7, inset 0 1px 0 rgba(255, 255, 255, 0.5);
   border-bottom: solid 1px #cbcbca;
-  color: #989794;
+  color: #a9a9a6;
   cursor: pointer;
-  font: 15px/18px "MuseoSans500Regular", sans-serif;
+  font: 14px/18px "MuseoSans300Regular", sans-serif;
   padding: 10px 10px 10px 50px;
   position: relative;
   text-transform: uppercase;
@@ -563,7 +573,7 @@ nav {
 .widget-content {
   height: 0;
   overflow: hidden;
-  padding: 0 20px; }
+  padding: 0 30px; }
   .widget-active .widget-content {
     height: auto;
     padding-bottom: 20px;
@@ -572,7 +582,70 @@ nav {
 .widget-toggle + .widget-content {
   background: #f8f7f6; }
 
-/*Specific widget ===================================== */
+.widget .dropdown {
+  -moz-transition: none;
+  -ms-transition: none;
+  -webkit-transition: none;
+  transition: none;
+  border-bottom: transparent;
+  border-radius: 3px;
+  display: inline-block;
+  font-family: "MuseoSans500Regular", sans-serif;
+  line-height: 18px;
+  padding: 0 3px;
+  position: relative; }
+  .widget .dropdown span {
+    position: relative;
+    z-index: 2; }
+  .widget .dropdown:after {
+    content: "▼";
+    display: inline;
+    font-size: 8px;
+    left: 2px;
+    position: relative; }
+  .widget .dropdown:before {
+    background: #2c5987;
+    border: solid 1px #264c74;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    content: "";
+    display: none;
+    height: 100%;
+    position: absolute;
+    left: -3%;
+    top: -2px;
+    width: 106%;
+    z-index: 0; }
+  .widget .dropdown:hover {
+    color: white; }
+    .widget .dropdown:hover:before {
+      display: block; }
+  .widget .dropdown:active:before {
+    background: #264c74;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 0 white; }
+
+/*====================================================== */
+/*Specific widgets ===================================== */
+/*====================================================== */
+/*Title ============ */
+.widget-title .widget-content {
+  color: #5b5c5e;
+  font: 15px/18px "MuseoSans500Regular", sans-serif; }
+
+/*Author ============ */
+.widget-author .widget-content {
+  padding-left: 50px;
+  position: relative; }
+  .widget-author .widget-content:before {
+    color: #2c5987;
+    font: 22px/20px "Pictos Custom";
+    content: "p";
+    display: block;
+    left: 25px;
+    margin-top: -9px;
+    position: absolute;
+    top: 50%; }
+
 /*Main Content ===================================== */
 .singular-header,
 .singular-content {
@@ -587,14 +660,17 @@ nav {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   padding: 50px; }
 
-section[contenteditable] {
-  font: 14px/20px "PT Mono"; }
-  section[contenteditable]:focus {
-    outline: none; }
-
 .singular-header h1 {
   float: left; }
 
+/*Editor Section ===================================== */
+section.editor {
+  padding: 0; }
+  section.editor textarea {
+    min-height: 800px;
+    padding: 50px; }
+
+/*History Section ===================================== */
 section.history {
   padding: 0; }
   section.history table {
