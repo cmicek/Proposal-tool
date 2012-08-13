@@ -127,7 +127,7 @@ var toggle = (function() {
       changeTarget($this);
       changeSiblings($this);
 
-    })
+    });
   }
 
   //

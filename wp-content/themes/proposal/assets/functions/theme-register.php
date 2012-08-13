@@ -74,7 +74,7 @@ $proposals   = array(
   'hierarchical' => true,
   'rewrite' => true,
   'query_var' => false,
-  'supports' => array('title', 'editor', 'author', 'revisions', 'comments'),
+  'supports' => array('title', 'author', 'revisions', 'comments'),
   'menu_position' => 5,
   'show_in_menu' => true,
   'show_in_nav_menus' => true,
@@ -112,8 +112,40 @@ $assets   = array(
   'show_in_nav_menus' => true,
   'has_archive' => true
 ); 
- 
 
+$section_label = array(
+   'name' => _x('Sections', 'post type general name'),
+   'singular_name' => _x('Section', 'post type singular name'),
+   'add_new' => _x('Add New', 'Section'),
+   'add_new_item' => __('Add New Section'),
+   'edit_item' => __('Edit Section'),
+   'new_item' => __('New Section'),
+   'view_item' => __('View Section'),
+   'search_items' => __('Search Sections'),
+   'not_found' =>  __('No Sections found'),
+   'not_found_in_trash' => __('No Sections found in Trash'), 
+   'parent_item_colon' => ''
+ );
+
+$sections   = array(
+  'description' => 'Sections',
+  'labels' => $section_label,
+  'public' => true,
+  'show_ui' => true,
+  '_builtin' => false,
+  '_edit_link' => 'post.php?post=%d',
+  'capability_type' => 'page',
+  'hierarchical' => true,
+  'rewrite' => true,
+  'query_var' => false,
+  'supports' => array('title', 'editor', 'author', 'revisions', 'comments'),
+  'menu_position' => 5,
+  'show_in_menu' => true,
+  'show_in_nav_menus' => false,
+  'has_archive' => false
+); 
+  
+register_post_type('sections', $sections);
 register_post_type('proposals', $proposals);
 register_post_type('assets', $assets);
   

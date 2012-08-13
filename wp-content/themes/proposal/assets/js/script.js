@@ -1,7 +1,5 @@
 /* Author: Chris Micek */
 //@codekit-prepend 'jquery';
-//@codekit-append 'jquery.tabs';
-//@codekit-append 'jquery.save';
 
 /* Simple JavaScript Inheritance
  * By John Resig http://ejohn.org/

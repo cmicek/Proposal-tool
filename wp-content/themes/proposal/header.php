@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<html <?php language_attributes(); ?> class="no-js">
+<html <?php language_attributes(); ?> class="no-js fixed">
 
  	<head>
 		<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
@@ -18,8 +18,8 @@
  		<?php wp_head(); ?>
     <?php global $post ?>
 	</head>
-	<body <?php body_class(); ?>>
-    <nav>
+	<body <?php body_class(); ?> class="fixed">
+    <nav class="pictos">
       <a href="<?php bloginfo('url') ?>/proposals" class="proposals <?php if (is_post_type_archive('proposals') || is_singular('proposals')){ echo('active');}?>" data-icon="f">Proposals</a>
       <a href="<?php bloginfo('url') ?>/assets" class="assets <?php if (is_post_type_archive('assets') || is_singular('assets')){ echo('active');}?>" data-icon="s">Assets</a>
       <a href="<?php bloginfo('url') ?>/users" class="users <?php if (is_page('users') || is_singular('users')){ echo('active');}?>" data-icon="p">Users</a>

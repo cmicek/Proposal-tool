@@ -27,24 +27,11 @@ require_once ($functions_path."theme-utilities-datetime.php");
 Add Custom, Theme Specific Functions Below Here
 ==============================================================================*/
 
-
-
-function my_custom_post_status(){
-  register_post_status( 'unread', array(
-      'label' => _x( 'Unread', 'post' ),
-      'public' => true,
-      'exclude_from_search' => false,
-      'show_in_admin_all_list' => true,
-      'show_in_admin_status_list' => true,
-      'label_count' => _n_noop( 'Unread <span class="count">(%s)</span>', 'Unread <span class="count">(%s)</span>' ),
-  ) );
-}
-
-add_action( 'init', 'my_custom_post_status' );
-
-
 add_action('wp_ajax_update_asset', 'update_asset');
 add_action('wp_ajax_nopriv_update_asset', 'update_asset');
+
+add_action('wp_ajax_update_proposal', 'update_proposal');
+add_action('wp_ajax_nopriv_update_proposal', 'update_proposal');
 
 /* ============================================================================
 Builds table rows
@@ -89,6 +76,31 @@ function build_revision_row($post){
 
 }
 
+/* ============================================================================
+Functions for the Asset & Proposal browsers
+==============================================================================*/
+
+function build_asset_browser($posts){
+  $str = '';
+  foreach ($posts as $post) {
+    $date = new Cokidoo_Datetime($post->post_modified);
+    $terms = wp_get_object_terms($post->ID, 'tag');
+    $str .= '<div class="asset">';
+    $str .=   '<span class="lock pictos">l</span>';
+    $str .=   '<h4 class="asset-title">';
+    $str .=     '<a href="'.get_permalink($post->ID).'">'.$post->post_title.'</a>';
+    $str .=     '<ul class="tags">';
+    foreach($terms as $term){
+      $str .=     '<li><a class="tag" href="'.get_term_link($term->slug, 'tag').'">'.$term->name.'</a></li>'; 
+    }
+    $str .=     '</ul>';
+    $str .=   '</h4>';
+    $str .=   '<span class="date">modified '.$date.'</span>';
+    $str .=   '<a class="btn btn-blue btn-icon" data-add-asset="">+</a>';
+    $str .= '</div>';
+  }
+  echo($str);
+}
 
 /* ============================================================================
 Asset Creation
@@ -168,12 +180,31 @@ function update_asset(){
       $postInfo['post_content'] = $_POST['post_content'];
     }
   }
+
+  //Post type is required
+  if(isset($_POST['post_type'])){
+    if($_POST['post_type'] == ''){
+      array_push($errors, 'Couldn\'t figure out the content of the post');
+    }else{
+      $postInfo['post_type'] = $_POST['post_type'];
+    }
+  }
+
+  //Post type is required
+  if(isset($_POST['post_parent'])){
+    if($_POST['post_parent'] == ''){
+      array_push($errors, 'Couldn\'t figure out the parent of the asset');
+    }else{
+      $postInfo['post_parent'] = $_POST['post_parent'];
+    }
+  }
+
   $post = get_post($_POST['ID']);
 
   $postInfo['post_author'] = $user->ID;
   $postInfo['post_title'] = $post->post_title;
-  $postInfo['post_type'] = 'assets';
   $postInfo['post_status'] = 'publish';
+
 
    //Attempts to update the asset in the database
   $response = wp_insert_post($postInfo);
@@ -193,5 +224,71 @@ function update_asset(){
 
 }
 
+/* ============================================================================
+Proposal Data Updates
+==============================================================================*/
+
+function update_proposal(){
+  if(!$_POST){
+     return false;
+  }
+  $errors = array();
+  $postInfo = array();
+  $user = wp_get_current_user();
+  
+  //Only runs for logged in users
+  if ($user->ID == 0) {
+    echo('Login!');
+    return false;
+  }
+  //Post ID is required
+  if(isset($_POST['ID'])){
+    if($_POST['ID'] == ''){
+      array_push($errors, 'Couldn\'t figure out the proposal ID');
+    }else{
+      $postInfo['ID'] = $_POST['ID'];
+    }
+  }
+
+  //Post Author is required
+  if(isset($_POST['post_author'])){
+    if($_POST['post_author'] == ''){
+      array_push($errors, 'Couldn\'t figure out the post author');
+    }else{
+      $postInfo['post_author'] = $_POST['post_author'];
+    }
+  }
+
+  //Post Title is required
+  if(isset($_POST['post_title'])){
+    if($_POST['post_title'] == ''){
+      array_push($errors, 'Couldn\'t figure out the title');
+    }else{
+      $postInfo['post_title'] = $_POST['post_title'];
+    }
+  }
+  
+  $post = get_post($_POST['ID']);
+
+  $postInfo['post_type'] = 'proposals';
+  $postInfo['post_status'] = 'publish';
+
+   //Attempts to update the asset in the database
+  $response = wp_insert_post($postInfo);
+  if (is_wp_error($response)){
+    foreach($response->errors as $error){
+      array_push($errors, $error[0]);
+    };
+    echo json_encode(array("errors" => $errors, "values" => $_POST));
+  }else{
+    //The post has been created so now we can store the image URL in the post meta
+    // update_post_meta($response, 'ad_image_url', $_POST['url']); 
+    $newPost = get_post($response);
+    // wp_redirect($newPost->guid . '?r=newPost');
+    echo json_encode(array("post" => $newPost, "user" => $user));
+  }
+
+
+}
 
 ?>

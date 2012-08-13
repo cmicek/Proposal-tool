@@ -1,6 +1,9 @@
 @import mixins
 
-/*Generic Sidebar =====================================*/
+/*======================================================*/
+/*Generic Sidebar Styles ===============================*/
+/*======================================================*/
+
 
 .singular-aside
   background: rgb(240,239,236)
@@ -9,7 +12,7 @@
   bottom: 0
   left: 60px
   top: 0
-  overflow: auto
+  overflow: visible
   position: fixed
   width: 250px
 
@@ -25,7 +28,7 @@
   border-bottom: solid 1px $grey30
   color: $grey50
   cursor: pointer
-  font: 14px/18px 'MuseoSans300Regular', sans-serif 
+  font: 14px/18px 'MuseoSans500Regular', sans-serif 
   padding: 10px 10px 10px 50px
   position: relative
   text-transform: uppercase
@@ -73,6 +76,7 @@
 
   .widget-active &
     height: auto
+    overflow: visible
     padding-bottom: 20px
     padding-top: 20px
 
@@ -98,6 +102,7 @@
       font-size: 8px
       left: 2px
       position: relative
+      top: -1px
     &:before
       background: $blue
       border: solid 1px darken($blue, 5%)
@@ -112,15 +117,82 @@
       width: 106%
       z-index: 0
 
-    &:hover
+    &:hover,
       color: #fff
 
       &:before
         display: block
-    &:active
+    &:active,
+    &.dropdown-active
+      color: #fff
+      top: 0px
       &:before
         background: darken($blue, 5%)
         box-shadow: inset 0 1px 3px rgba(0,0,0,.25), 0 1px 0 #fff
+        display: block
+  .dropdown-content
+    background: #fff
+    border: solid 1px $grey20
+    box-shadow: 0 1px 3px rgba(0,0,0,.05)
+    display: none
+    position: absolute
+    right: -40px
+    top: 120%
+    width: 200px
+    z-index: 2
+
+    li
+      border-bottom: solid 1px $grey10
+      color: $blue
+      display: block
+      font: 15px/18px 'MuseoSans300Regular', sans-serif 
+      margin: 0
+      padding: 10px
+      position: relative
+
+      &:hover
+        background: $blue
+        border-bottom: solid 1px darken($blue, 5%)
+        color: #fff
+        font: 15px/18px 'MuseoSans500Regular', sans-serif 
+      &:active
+        box-shadow: inset 0 1px 2px rgba(0,0,0,.5)
+        color: lighten($blue, 50%)
+        top: 1px
+    li:first-child
+      &:after
+        @include transform (rotate(45deg))
+        background: #fff
+        border-left: solid 1px $grey20
+        border-top: solid 1px $grey20
+        content: ""
+        display: block
+        height: 10px
+        right: 38px
+        margin-left: -5px
+        position: absolute
+        top: -6px
+        width: 10px
+        z-index: 3
+      &:hover
+        &:after
+          background: $blue
+    li.selected,
+    li.selected:hover,
+    li.selected:active
+      background: lighten($blue, 60%)
+      border-bottom: solid 1px lighten($blue, 55%)
+      box-shadow: none
+      color: $blue
+      font: 15px/18px 'MuseoSans500Regular', sans-serif 
+      top: 0
+      &:after
+        background: lighten($blue, 60%)
+
+  .dropdown-active
+    .dropdown-content
+      display: block
+
 /*======================================================*/
 /*Specific widgets =====================================*/
 /*======================================================*/
@@ -130,7 +202,7 @@
 .widget-title
   .widget-content
     color: $grey80
-    font: 15px/18px 'MuseoSans500Regular', sans-serif 
+    font: 16px/18px 'MuseoSans500Regular', sans-serif 
 
 /*Author ============*/
 
@@ -148,7 +220,62 @@
       position: absolute
       top: 50%
 
+/*Sections ============*/
+
+.widget-sections
+  .widget-content
+    padding: 0
+  ul
+    float: none
+    height: auto
+    margin: 0
+    padding: 0
+  li
+    @include box-shadow (inset 0 1px0 #fff)
+    border-bottom: solid 1px $grey20
+    display: block
+    float: none
+    margin: 0
+    position: relative
+
+    span
+      position: absolute
+  .tab-nav-item
+    color: $grey80
+    display: block
+    font: 15px/18px 'MuseoSans300Regular', sans-serif 
+    padding: 12px 50px
+  .tab-nav-active,
+  .tab-nav-active:hover,
+  .tab-nav-active:active
+    @include gradient ($blue, ($blue, rgb(36,72,110)))
+    box-shadow: inset -1px 0 3px rgba(0,0,0,.25)
+    color: $white
+    font: 15px/18px 'MuseoSans500Regular', sans-serif 
+    top: 0
+
+    &:after
+      @include gradient (#ff0, (left top, rgb(42,85,129), rgb(37,75,114)))
+      border: none
+      border-top: solid 1px darken($blue, 2%)
+      border-right: solid 1px darken($blue, 2%)
+      bottom: auto
+      box-shadow: 1px -1px 0 rgba(255,255,255,.5), inset -1px 1px 3px -2px rgba(0,0,0,.25)
+      left: auto
+      margin: 0
+      margin-top: -8px
+      right: -8px
+      top: 50%
+  a.btn
+    display: block
+    float: none
+    margin: 12px
+    padding: 12px
+
+/*==================================================*/
 /*Main Content =====================================*/
+/*==================================================*/
+
 
 .singular-header,
 .singular-content

@@ -40,7 +40,6 @@
       </aside>
       
       <header class="singular-header">
-
         <ul class="tab-nav">
           <li class="title"><h1><?php the_title(); ?></h1></li>
           <li><a href="#editor" class="tab-nav-item ">editor</a></li>
@@ -48,13 +47,13 @@
           <li class="history"><a data-modified data-modified-time="<? echo($post->post_modified); ?>" data-modified-user="<? echo($author->display_name); ?>" href="#history" class="tab-nav-item tab-history">modified <?php echo($date); ?> by <? echo($author->display_name); ?></a></li>
         </ul>
       </header>
-      <div id="tabs" class="tabs singular-content">
+      <div class="tabs singular-content">
         <section data-tab-id="editor" class="tab editor">
-          <textarea data-asset-id="<? the_ID(); ?>" class="editor"><? echo($post->post_content); ?></textarea>
+          <textarea data-post_type="assets" data-asset-id="<? the_ID(); ?>" data-old-content="<? echo($post->post_content); ?>" class="editor"><? echo($post->post_content); ?></textarea>
         </section>
         <section data-tab-id="preview" class="tab"></section>
         <section data-tab-id="history" class="tab history">
-          <table class="revisions">
+          <table class="revisions">`
             <thead>
               <tr>
                 <th>Date</th>
@@ -91,8 +90,5 @@
       $('[data-tab-id=preview]').html(markdown.toHTML($('textarea.editor').val()));
     });
   });
-
-
 </script>
-
 <?php get_footer(); ?> 	

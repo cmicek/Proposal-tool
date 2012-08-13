@@ -1,0 +1,200 @@
+@import mixins
+
+html.fixed,
+body.fixed
+  height: auto
+  overflow: hidden
+
+/*======================================================*/
+/*Generic Modal Styles =================================*/
+/*======================================================*/
+
+
+.modal-container
+  @include transform(translateZ(0))
+  background: rgba(122,122,124,.65)
+  bottom: 0
+  display: none
+  height: 100%
+  left: 0
+  overflow-y: scroll
+  opacity: 1
+  position: fixed
+  right: 0
+  top: 0
+  z-index: 10
+
+.modal-active
+  display: block
+
+.modal
+  background: #fff
+  box-shadow: 0 0 5px rgba(0,0,0,.25)
+  margin: 100px
+  position: relative
+  z-index: 11
+
+.modal-header
+  background: rgb(83,82,87)
+  box-shadow: inset 0 -1px 2px rgba(0,0,0,.5)
+  font-family: 'MuseoSans500Regular'
+  overflow: hidden
+  width: 100%
+  .modal-title
+    color: $white
+    display: block
+    font-size: 15px
+    padding: 18px 50px 18px 20px
+    text-shadow: 0 -1px 0 #000
+    text-transform: uppercase
+
+  .close
+    border: solid 1px $black
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 1px 0 rgba(255,255,255,.1)
+    color: $white
+    font: 25px/32px 'MuseoSans500Regular'
+    height: 32px
+    padding: 0
+    position: absolute
+    right: 10px
+    top: 11px
+    text-align: center
+    width: 32px
+
+    &:active
+      border: solid 1px darken($black, 5%)
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.25), 0 1px 0 rgba(255,255,255,.05)
+      top: 11px
+
+
+.modal-content
+  padding: 20px
+
+  &:after
+    content: ""
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+
+.modal-tab-nav
+  background: #fff
+  border-bottom: solid 1px $grey25
+  box-shadow: inset 0 -1px 3px -1px rgba(0,0,0,.15)
+  height: 50px
+  margin: 0
+  padding: 0 10px 0 20px
+  li
+    float: left
+  a
+    font: 14px/50px "MuseoSans500Regular"
+    text-transform: uppercase
+
+    &.tab-nav-active:after
+      background: rgb(250,249,246)
+      bottom: -26px
+  li.search
+    height: 49px
+    margin: 0
+    float: right
+    padding-left: 175px
+    position: relative
+    width: 207px
+    input
+      float: left
+      position: relative
+    input[type=text]
+      background: none
+      border: none
+      border-left: solid 1px $grey20
+      bottom: 0
+      font: 15px/24px "MuseoSans300Regular"
+      height: 100%
+      left: 0
+      padding-left: 20px
+      position: absolute
+      top: 0
+      width: 175px
+      &::-webkit-input-placeholder
+        color: $grey50
+    input[type=button]
+      height: 32px
+      padding: 0
+      width: 32px
+      margin-top: 9px
+
+/*======================================================*/
+/*Specific Modals  =====================================*/
+/*======================================================*/
+
+/*Asset Browser ============*/
+
+.asset-browser
+  background: rgb(250,249,246)
+  padding: 0
+
+  .asset
+    border-bottom: solid 1px $grey15
+    box-shadow: 0 1px 0 #fff
+    overflow: hidden
+    padding: 13px 50px 13px 20px
+    position: relative
+    text-shadow: 0 1px 0 #fff
+    &:last-child
+      border-bottom: none
+      box-shadow: none
+    
+    span
+      display: block
+      float: left
+      position: relative
+    span.lock
+      color: $grey50
+      margin-right: 20px
+      top: 3px
+    span.date
+      color: $grey80
+      top: 2px
+    .asset-title
+      float: left
+      width: 60%
+      a
+        border-bottom: transparent
+      a:hover
+        border-bottom: solid 1px
+        color: #222
+    .tags
+      margin: 0
+      li
+        display: inline-block
+        margin: 0 5px 0 0
+
+        &:after
+          color: $grey50
+          content: ","
+          display: inline
+        &:last-child:after
+          display: none
+      a
+        border-bottom: transparent
+        color: $grey50
+        font-style: italic
+        font-size: 13px
+    a.btn
+      float: right
+      font-weight: bold
+      height: 32px
+      line-height: 28px
+      padding: 0 0 0 8px
+      position: absolute
+      right: 10px
+      text-align: left
+      top: 10px
+      width: 32px
+
+      &:active
+        top: 11px
+
+
+
+/*Proposal Browser ============*/

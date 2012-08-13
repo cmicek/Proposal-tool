@@ -1,0 +1,129 @@
+
+@mixin border-radius ($radius) 
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  -webkit-border-radius: $radius
+  border-radius: $radius
+
+@mixin background-size($str)
+  -moz-background-size: $str
+  -ms-background-size: $str
+  -webkit-background-size: $str
+  background-size: $str
+
+
+@mixin box-shadow($str: 0 1px 3px rgba(0,0,0,.10), $alwaysDisplay: false)
+  -moz-box-shadow: $str
+  -ms-box-shadow: $str
+  -webkit-box-shadow: $str
+  box-shadow: $str
+
+  @if $alwaysDisplay == false
+    .touch &
+      -moz-box-shadow: none
+      -ms-box-shadow: none
+      -webkit-box-shadow: none
+      box-shadow: none
+
+@mixin transition($str: all .15s)
+  -moz-transition: $str
+  -ms-transition: $str
+  -webkit-transition: $str
+  transition: $str
+
+@mixin transition-slow($str: all .4s, $alwaysDisplay: false)
+  -moz-transition: $str
+  -ms-transition: $str
+  -webkit-transition: $str
+  transition: $str
+  
+  @if $alwaysDisplay == false
+    .touch &
+      -moz-transition: none
+      -ms-transition: none
+      -webkit-transition: none
+      transition: none
+
+@mixin column($count, $spacing)
+  -moz-column-count: $count
+  -moz-column-gap: $spacing
+  -webkit-column-count: $count
+  -webkit-column-gap: $spacing
+  column-count: $count
+  column-gap: $spacing
+
+@mixin transform($str)
+  -moz-transform: $str
+  -ms-transform: $str
+  -webkit-transform: $str
+  transform: $str
+
+@mixin font-smoothing($str)
+  -moz-font-smoothing: $str
+  -ms-font-smoothing: $str
+  -webkit-font-smoothing: $str
+  font-smoothing: $str
+
+
+@mixin box-sizing($str)
+  -moz-box-sizing: $str
+  -ms-box-sizing: $str
+  -webkit-box-sizing: $str
+  box-sizing: $str
+
+@mixin backface-visibility($str)
+  -moz-backface-visibility: $str
+  -ms-backface-visibility: $str
+  -webkit-backface-visibility: $str
+  backface-visibility: $str
+
+@mixin gradient($color,$gradient)
+  background-color: $color
+  background-image: -moz-linear-gradient($gradient)
+  background-image: -ms-linear-gradient($gradient)
+  background-image: -webkit-linear-gradient($gradient)
+  background-image: linear-gradient($gradient)
+
+
+@mixin animation($name, $duration, $count, $timing: linear)
+  -moz-animation-name: $name
+  -moz-animation-duration: $duration
+  -moz-animation-iteration-count: $count
+  -moz-animation-timing-function: $timing
+  -webkit-animation-name: $name
+  -webkit-animation-duration: $duration
+  -webkit-animation-iteration-count: $count
+  -webkit-animation-timing-function: $timing
+
+
+
+@mixin user-select($user-select-val)
+  -webkit-touch-callout: $user-select-val
+  -webkit-user-select: $user-select-val
+  -khtml-user-select: $user-select-val
+  -moz-user-select: $user-select-val
+  -ms-user-select: $user-select-val
+  user-select: $user-select-val
+
+
+
+$blue: rgb(44,89,135)
+$red: #A00F01
+$orange: #C47335
+$black: #4f4c4d
+$green: #6E7D42
+$white: rgb(243,242,239)
+$truewhite: #fff
+
+$grey5: rgb(246,246,246) 
+$grey10: rgb(238,238,237) 
+$grey15: rgb(229,229,228) 
+$grey20: rgb(221,220,219)
+$grey25: rgb(212,212,211)
+$grey30: rgb(203,203,202) 
+$grey40: rgb(186,186,185) 
+$grey50: rgb(169,169,166) 
+$grey60: rgb(152,151,148) 
+$grey70: rgb(135,134,130) 
+$grey80: rgb(91,92,94) 
+$grey100: rgb(83,82,87) 
